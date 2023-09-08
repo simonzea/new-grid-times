@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
+import { COLORS, QUERIES } from '../../constants';
+
 const OpinionStory = ({ id, title, author, avatar }) => {
   return (
     <a href={`/story/${id}`}>
@@ -17,6 +19,16 @@ const OpinionStory = ({ id, title, author, avatar }) => {
 
 const Wrapper = styled.article`
   color: var(--color-gray-900);
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  flex:1;
+
+  @media ${QUERIES.tabletOnly}{
+    display: revert;
+    flex-direction: revert;
+    justify-content: revert;
+  }
 `;
 
 const Avatar = styled.img`

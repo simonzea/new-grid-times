@@ -12,6 +12,7 @@ import MainStory from '../MainStory';
 import SecondaryStory from '../SecondaryStory';
 import OpinionStory from '../OpinionStory';
 import Advertisement from '../Advertisement';
+import { COLORS, QUERIES } from '../../constants';
 
 const MainStoryGrid = () => {
   return (
@@ -23,18 +24,23 @@ const MainStoryGrid = () => {
       <SecondaryStorySection>
         <StoryList>
           {SECONDARY_STORIES.map((story, index) => (
-            <SecondaryStory key={story.id} {...story} />
+          <VerticalStoryWrapper key={story.id}>
+            <SecondaryStory {...story} />
+          </VerticalStoryWrapper>
+            
           ))}
         </StoryList>
       </SecondaryStorySection>
 
       <OpinionSection>
         <SectionTitle>Opinion</SectionTitle>
-        <StoryList>
+        <StoryListOptions>
           {OPINION_STORIES.map((story, index) => (
-            <OpinionStory key={story.id} {...story} />
+            <VerticalStoryWrapper key={story.id}>
+            <OpinionStory {...story} />
+          </VerticalStoryWrapper>
           ))}
-        </StoryList>
+        </StoryListOptions>
       </OpinionSection>
 
       <AdvertisementSection>
@@ -66,6 +72,23 @@ const SecondaryStorySection = styled.section`
 const StoryList = styled.div`
   display: flex;
   flex-direction: column;
+`;
+const VerticalStoryWrapper = styled.div`
+  &:not(:last-of-type) {
+    border-bottom: 1px solid var(--color-gray-300);
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+`;
+
+const StoryListOptions = styled.div`
+
+  display: flex;
+  flex-direction: column;
+  @media ${QUERIES.tabletOnly}{
+    flex-direction: row;
+  }
+
 `;
 
 const OpinionSection = styled.section`
